@@ -48,7 +48,7 @@ export default function Home() {
             and swimming</span>. Gaming fuels my creativity and interest in interactive
             design, basketball has taught me teamwork and perseverance, and swimming
             helps me stay disciplined and focused. These hobbies shape how I approach
-            software development—balancing creativity, collaboration, and persistence
+            software development balancing creativity, collaboration, and persistence
             in every project I take on.
           </p>
         </div>
@@ -88,8 +88,8 @@ export default function Home() {
         <div className="p-6">
           <h3 className="text-lg font-semibold">Monopoly Strategy Simulation</h3>
           <p className="text-sm text-zinc-400 mt-2">
-            Java-based simulation engine with AI-driven strategies. Ran 60+ simulations
-            and applied statistical analysis to evaluate long-term outcomes — similar
+            Java based simulation engine with AI-driven strategies. Ran 60+ simulations
+            and applied statistical analysis to evaluate long-term outcomes similar
             to portfolio backtesting.
           </p>
           <div className="mt-4">
