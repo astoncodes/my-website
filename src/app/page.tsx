@@ -54,7 +54,7 @@ export default function Home() {
 
           <p className="mb-6 max-w-3xl text-zinc-300">
             I’m a Computer Science major at the University of Prince Edward
-            Island, minoring in Economics, and aiming to graduate in May 2027.
+            Island, minoring in Economics, set to graduate in May 2027.
             I enjoy building meaningful applications that make a real impact,
             and I’m especially curious about game development and emerging
             technologies.
