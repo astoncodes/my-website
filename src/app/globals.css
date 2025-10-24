@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent sticky header from covering anchored sections */
+section {
+  scroll-margin-top: 5rem; /* matches ~header height */
+}
