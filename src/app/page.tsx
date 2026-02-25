@@ -226,11 +226,11 @@ export default function Home() {
           {/* Bio */}
           <div className="reveal mb-14" style={{ maxWidth: "62ch" }}>
             <p style={{ color: "var(--text-secondary)", lineHeight: 1.85, fontSize: "1.05rem" }}>
-              I'm a Computer Science major at the{" "}
+              I&apos;m a Computer Science major at the{" "}
               <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>University of Prince Edward Island</span>,
               minoring in Economics, set to graduate in{" "}
               <span style={{ color: "var(--accent-lime)", fontWeight: 500 }}>May 2027</span>.
-              I'm especially curious about game development, emerging technologies, and how software
+              I&apos;m especially curious about game development, emerging technologies, and how software
               can genuinely change how people experience the world.
             </p>
           </div>
@@ -249,7 +249,7 @@ export default function Home() {
                   Gaming is where my love for interactive design was born.
                   Exploring richly crafted worlds and tight game mechanics constantly
                   fuels my creativity and inspires the interfaces I build.
-                  It's also what first got me excited about game development as a craft.
+                  It&apos;s also what first got me excited about game development as a craft.
                 </p>
               </div>
 
@@ -660,14 +660,14 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-5" style={{ position: "relative", zIndex: 1 }}>
           <div className="reveal mb-10">
             <p className="tag mb-3">Get in touch</p>
-            <h2 className="section-heading">Let's talk.</h2>
+            <h2 className="section-heading">Let&apos;s talk.</h2>
             <span className="glow-line mt-4" style={{ width: 56 }} />
           </div>
 
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="reveal">
               <p style={{ color: "var(--text-secondary)", lineHeight: 1.85, fontSize: "1.05rem", marginBottom: "2rem" }}>
-                I'd love to hear about new opportunities, collaborations, or just to connect.
+                I&apos;d love to hear about new opportunities, collaborations, or just to connect.
                 Drop a message below or reach out directly.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
