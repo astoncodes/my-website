@@ -672,8 +672,8 @@ export default function Home() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {[
-                  { icon: "✉", label: "Email", val: "ayobamidaniel@email.com" },
-                  { icon: "💼", label: "LinkedIn", val: "linkedin.com/in/ayobami-daniel" },
+                  { icon: "✉", label: "Email", val: "ayobamio262@email.com" },
+                  { icon: "💼", label: "LinkedIn", val: "https://www.linkedin.com/in/daniel-oluwatosin-495755281/" },
                   { icon: "🐙", label: "GitHub",   val: "github.com/astoncodes" },
                 ].map(item => (
                   <div
