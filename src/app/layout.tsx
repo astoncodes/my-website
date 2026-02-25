@@ -2,71 +2,104 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
+import MobileNav from "@/components/MobileNav";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
-  title: "Ayobami Oluwatosin Daniel",
-  description: "Portfolio",
+  title: "Ayobami Daniel — Software Engineer",
+  description: "Portfolio of Ayobami Oluwatosin Daniel, Software Engineer & CS student at UPEI.",
+  icons: {
+    icon: [
+      { url: "/ayo.ico", sizes: "any" },
+      { url: "/ayo.ico", type: "image/x-icon" },
+    ],
+    shortcut: "/ayo.ico",
+    apple: "/ayo.ico",
+  },
 };
+
+const NAV_LINKS = [
+  { href: "#about",     label: "About"    },
+  { href: "#resume",    label: "Resume"   },
+  { href: "#portfolio", label: "Projects" },
+  { href: "#contact",   label: "Contact"  },
+];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white">
-        {/* Skip link for accessibility */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'light') {
+                  document.documentElement.classList.add('light');
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
+      <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-yellow-400 text-black px-3 py-2 rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-lg focus:bg-[--accent-lime] focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-black"
         >
           Skip to content
         </a>
 
-        {/* Sticky Header */}
-        <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 border-b border-white/10">
-          <nav className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
-            <Link href="#home" className="font-semibold tracking-tight">
-              AYO
+        <header className="sticky top-0 z-50 theme-header">
+          <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+            <Link
+              href="#home"
+              style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.04em", fontWeight: 800, fontSize: "1.1rem" }}
+            >
+              <span style={{ color: "var(--accent-lime)" }}>A</span>YO
             </Link>
 
-            {/* Desktop nav */}
-            <ul className="hidden md:flex items-center gap-6 text-sm text-zinc-300">
-              <li><a href="#about" className="hover:text-white">About</a></li>
-              <li><a href="#resume" className="hover:text-white">Resume</a></li>
-              <li><a href="#portfolio" className="hover:text-white">Projects</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact</a></li>
-              <li>
-                <a
-                  href="/Daniel's Resume.pdf"
-                  download
-                  className="rounded-lg px-3 py-1.5 bg-yellow-500 text-black font-medium hover:bg-yellow-400"
-                >
+            <ul className="hidden items-center gap-1 md:flex">
+              {NAV_LINKS.map(({ href, label }) => (
+                <li key={href}>
+                  <a href={href} className="nav-link rounded-lg px-3 py-2 text-sm">
+                    {label}
+                  </a>
+                </li>
+              ))}
+              <li className="ml-2"><ThemeToggle /></li>
+              <li className="ml-1">
+                <a href="/Daniel's Resume.pdf" download className="btn-primary text-sm">
                   Download Résumé
                 </a>
               </li>
             </ul>
 
-            {/* Mobile: simple menu */}
-            <details className="md:hidden">
-              <summary className="cursor-pointer list-none">Menu</summary>
-              <ul className="absolute right-4 mt-2 w-44 rounded-xl border border-white/10 bg-zinc-900/90 p-2 text-sm">
-                <li><a href="#about" className="block px-3 py-2 rounded hover:bg-white/5">About</a></li>
-                <li><a href="#portfolio" className="block px-3 py-2 rounded hover:bg-white/5">Projects</a></li>
-                <li><a href="#resume" className="block px-3 py-2 rounded hover:bg-white/5">Resume</a></li>
-                <li><a href="#contact" className="block px-3 py-2 rounded hover:bg-white/5">Contact</a></li>
-                <li>
-                  <a
-                    href="/Ayobami_Oluwatosin_Resume.pdf"
-                    download
-                    className="block px-3 py-2 rounded bg-yellow-500 text-black font-medium mt-2 text-center"
-                  >
-                    Download Résumé
-                  </a>
-                </li>
-              </ul>
-            </details>
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
+              <MobileNav links={NAV_LINKS} />
+            </div>
           </nav>
         </header>
 
-        <main id="main">{children}</main>
+        <main id="main" style={{ position: "relative", zIndex: 1 }}>
+          {children}
+        </main>
+
+        <footer className="py-10 theme-footer">
+          <div className="mx-auto max-w-6xl px-5">
+            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+              <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.04em" }}>
+                <span style={{ color: "var(--accent-lime)" }}>A</span>YO
+              </span>
+              <div className="flex items-center gap-6">
+                <a href="https://github.com/astoncodes" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
+                <a href="https://linkedin.com/in/ayobami-daniel" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+                <a href="#contact" className="footer-link">Contact</a>
+              </div>
+              <p className="footer-link text-center">© {new Date().getFullYear()} Ayobami Daniel</p>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
