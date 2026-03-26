@@ -161,7 +161,7 @@ export default function Home() {
           >
             {[
               { val: 3, suffix: "+", label: "Projects shipped" },
-              { val: 1,  suffix: "",  label: "Internship" },
+              { val: 2,  suffix: "",  label: "Internships" },
               { val: 5,  suffix: "+", label: "Tech stacks" },
             ].map(s => (
               <div key={s.label}>
