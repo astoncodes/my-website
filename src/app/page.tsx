@@ -371,6 +371,47 @@ export default function Home() {
                 </h3>
                 <div style={{ position: "relative", paddingLeft: 36 }}>
                   <div className="timeline-line" />
+
+                  {/* Mackenzie Investments — Incoming */}
+                  <div style={{ display: "flex", gap: 14, alignItems: "flex-start", marginBottom: 36 }}>
+                    <div style={{
+                      position: "absolute", left: 0,
+                      width: 24, height: 24, borderRadius: "50%",
+                      background: "var(--bg)",
+                      border: "2px dashed var(--accent-lime)",
+                      boxShadow: "0 0 0 3px rgba(200,241,53,0.15), 0 0 20px rgba(200,241,53,0.2)",
+                      flexShrink: 0,
+                    }} />
+                    <div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2, flexWrap: "wrap" }}>
+                        <p style={{ fontWeight: 600, fontSize: "0.95rem" }}>
+                          Portfolio Strategy, Research, Governance & Oversight Intern
+                        </p>
+                        <span style={{
+                          fontSize: "0.68rem",
+                          fontFamily: "var(--font-mono)",
+                          fontWeight: 600,
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                          color: "var(--accent-lime)",
+                          background: "rgba(200,241,53,0.1)",
+                          border: "1px solid rgba(200,241,53,0.25)",
+                          borderRadius: 99,
+                          padding: "2px 8px",
+                        }}>
+                          Incoming
+                        </span>
+                      </div>
+                      <p style={{ fontSize: "0.8rem", color: "var(--accent-lime)", fontFamily: "var(--font-mono)", marginBottom: 6 }}>
+                        Mackenzie Investments (IGM Financial) · May – Aug 2026
+                      </p>
+                      <p style={{ fontSize: "0.87rem", color: "var(--text-muted)", fontStyle: "italic" }}>
+                        Toronto, ON — starting May 2026
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* BC ELN */}
                   <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                     <div className="timeline-dot" style={{ position: "absolute", left: 0 }} />
                     <div>
@@ -672,8 +713,8 @@ export default function Home() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {[
-                  { icon: "✉", label: "Email", val: "ayobamio262@email.com" },
-                  { icon: "💼", label: "LinkedIn", val: "https://www.linkedin.com/in/daniel-oluwatosin-495755281/" },
+                  { icon: "✉", label: "Email", val: "ayobamidaniel@email.com" },
+                  { icon: "💼", label: "LinkedIn", val: "linkedin.com/in/ayobami-daniel" },
                   { icon: "🐙", label: "GitHub",   val: "github.com/astoncodes" },
                 ].map(item => (
                   <div
