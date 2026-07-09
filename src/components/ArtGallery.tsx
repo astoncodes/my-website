@@ -1,0 +1,121 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import SectionDivider from "@/components/SectionDivider";
+import { GALLERY_ITEMS, type GalleryCategory } from "@/data/galleryItems";
+
+const FILTERS: { label: string; value: GalleryCategory | "all" }[] = [
+  { label: "ALL", value: "all" },
+  { label: "ANIME", value: "anime" },
+  { label: "MUSIC", value: "music" },
+  { label: "FILM", value: "film" },
+  { label: "SPORTS", value: "sports" },
+  { label: "DESIGN", value: "design" },
+];
+
+export default function ArtGallery() {
+  const [filter, setFilter] = useState<GalleryCategory | "all">("all");
+  const items = GALLERY_ITEMS.filter((i) => filter === "all" || i.category === filter);
+
+  return (
+    <section id="gallery" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
+      <SectionDivider index="SEC. 05 — REFERENCE WALL" title="Taste" solid="Index" />
+
+      {/* Filter tabs */}
+      <div className="reveal mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter gallery by category">
+        {FILTERS.map((f) => {
+          const active = filter === f.value;
+          return (
+            <button
+              key={f.value}
+              role="tab"
+              aria-selected={active}
+              onClick={() => setFilter(f.value)}
+              className="mono cursor-pointer px-4 py-2 text-[0.68rem] tracking-[0.14em] transition-colors duration-150"
+              style={{
+                border: `1px solid ${active ? "var(--blue)" : "var(--line)"}`,
+                background: active ? "var(--blue-deep)" : "transparent",
+                color: active ? "var(--beige)" : "var(--text-2)",
+              }}
+            >
+              {f.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="masonry">
+        {items.map((item) => {
+          const card = (
+            <figure
+              className="dossier group relative overflow-hidden"
+              style={{ aspectRatio: item.ratio }}
+            >
+              <div className="dossier-glow" />
+
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.alt ?? item.title}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              ) : (
+                <div className="absolute inset-0" style={{ background: item.gradient }} aria-hidden="true">
+                  <div className="hero-grid absolute inset-0 opacity-60" />
+                </div>
+              )}
+
+              {/* Always-visible label */}
+              <figcaption className="absolute inset-0 flex flex-col justify-between p-4">
+                <div className="flex items-start justify-between gap-2">
+                  <span className="hud-label" style={{ color: "var(--beige)" }}>
+                    {item.category.toUpperCase()}
+                  </span>
+                  <span className="hud-label">{item.id.slice(0, 3).toUpperCase()}-{item.moods.length}</span>
+                </div>
+
+                <div>
+                  <p className="display text-xl leading-tight" style={{ color: "var(--beige)", textShadow: "0 2px 12px rgba(0,0,0,0.8)" }}>
+                    {item.title}
+                  </p>
+
+                  {/* Hover-reveal caption + moods */}
+                  <div
+                    className="mt-2 max-h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-32 group-hover:opacity-100 group-focus-within:max-h-32 group-focus-within:opacity-100"
+                    style={{ transitionTimingFunction: "var(--ease-out)" }}
+                  >
+                    <p className="text-[0.78rem] leading-snug" style={{ color: "var(--text-2)" }}>
+                      {item.caption}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {item.moods.map((m) => (
+                        <span key={m} className="chip" style={{ background: "rgba(8,8,11,0.7)" }}>{m}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          );
+
+          return item.link ? (
+            <a key={item.id} href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+              {card}
+            </a>
+          ) : (
+            <div key={item.id} tabIndex={0} aria-label={`${item.title} — ${item.caption}`}>
+              {card}
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="reveal mono mt-8 text-[0.7rem]" style={{ color: "var(--muted)" }}>
+        {"// Drop reference images into /public/gallery and register them in src/data/galleryItems.ts"}
+      </p>
+    </section>
+  );
+}
