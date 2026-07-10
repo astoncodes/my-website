@@ -11,7 +11,7 @@ const TONE_COLOR: Record<string, string> = {
 export default function SkillsLoadout() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-      <SectionDivider index="SEC. 04 — EQUIPMENT" title="Loadout" solid="Screen" />
+      <SectionDivider index="SEC. 04 — LOADOUT" title="Technical" solid="Skills" />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {SKILL_GROUPS.map((group) => (

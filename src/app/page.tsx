@@ -59,7 +59,7 @@ export default function Home() {
 
       {/* Live media feed — Spotify + Letterboxd */}
       <section id="signal" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-        <SectionDivider index="SEC. 06 — LIVE FEED" title="Signal" solid="Feed" />
+        <SectionDivider index="SEC. 06 — SIGNAL FEED" title="Music &" solid="Film" />
         <div className="grid gap-6 lg:grid-cols-2">
           <SpotifyNowPlaying />
           <RecentlyWatched />

@@ -20,7 +20,29 @@ export type GalleryItem = {
   ratio: string;
 };
 
-// Add Pinterest saves / scans / photos to /public/gallery and point `image` at them.
+/* ─────────────────────────────────────────────────────────────
+   HOW TO ADD YOUR OWN IMAGES
+   1. Drop the file into  public/gallery/   (jpg/png/webp all fine)
+      e.g.  public/gallery/eva-unit01.jpg
+   2. Add an entry below (or set `image` + `alt` on an existing one):
+
+      {
+        id: "eva-unit01",                     // unique slug
+        title: "UNIT-01 BERSERK",             // big label on the card
+        category: "anime",                    // anime | music | film | sports | design | personal
+        image: "/gallery/eva-unit01.jpg",     // path relative to /public
+        alt: "Evangelion Unit-01 poster",     // describes the image (accessibility)
+        caption: "Why the site glows purple.",// revealed on hover
+        link: "https://...",                  // optional — card becomes a link
+        moods: ["EVA", "PURPLE", "BERSERK"],  // hover tags
+        gradient: "",                         // ignored once image is set
+        ratio: "3/4",                         // card shape: "3/4" portrait,
+      },                                      // "1/1" square, "16/10" wide
+
+   3. That's it — filters, hover captions, and layout pick it up
+      automatically. Once `image` is set the gradient placeholder
+      is replaced by the photo with a dark scrim for readability.
+──────────────────────────────────────────────────────────────── */
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "nerv-feed",

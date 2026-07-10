@@ -158,7 +158,7 @@ export default function ProjectArchive() {
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-      <SectionDivider index="SEC. 03 — FEATURED WORK" title="Project" solid="Archive" />
+      <SectionDivider index="SEC. 03 — PROJECT ARCHIVE" title="Selected" solid="Projects" />
 
       <div className="grid gap-6 md:grid-cols-3">
         {PROJECTS.map((p) => (

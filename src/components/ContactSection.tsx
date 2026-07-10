@@ -32,7 +32,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-      <SectionDivider index="SEC. 07 — TRANSMISSION" title="Contact" solid="Signal" />
+      <SectionDivider index="SEC. 07 — TRANSMISSION" title="Get In" solid="Touch" />
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="reveal">

@@ -13,7 +13,7 @@ const FILE_ROWS = [
 export default function AboutCaseFile() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-      <SectionDivider index="SEC. 01 — PERSONNEL FILE" title="Subject" solid="Profile" />
+      <SectionDivider index="SEC. 01 — PERSONNEL FILE" title="About" solid="Me" />
 
       <div className="grid gap-8 lg:grid-cols-5">
         {/* Case file table */}

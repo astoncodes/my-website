@@ -4,7 +4,7 @@ import { EXPERIENCE } from "@/data/experience";
 export default function ExperienceLog() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-      <SectionDivider index="SEC. 02 — MISSION RECORDS" title="Experience" solid="Log" />
+      <SectionDivider index="SEC. 02 — MISSION RECORDS" title="Work" solid="Experience" />
 
       <div className="flex flex-col gap-6">
         {EXPERIENCE.map((job, i) => (

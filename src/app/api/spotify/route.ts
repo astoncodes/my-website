@@ -59,7 +59,13 @@ export async function GET() {
   const refresh = process.env.SPOTIFY_REFRESH_TOKEN;
 
   if (!id || !secret || !refresh) {
-    return NextResponse.json(SPOTIFY_MOCK);
+    // Diagnostic: names of the missing vars only — never values.
+    const missing = [
+      !id && "SPOTIFY_CLIENT_ID",
+      !secret && "SPOTIFY_CLIENT_SECRET",
+      !refresh && "SPOTIFY_REFRESH_TOKEN",
+    ].filter(Boolean);
+    return NextResponse.json({ ...SPOTIFY_MOCK, reason: "missing_env", missing });
   }
 
   try {
@@ -87,7 +93,9 @@ export async function GET() {
 
     const payload: SpotifyPayload = { mock: false, nowPlaying, recentlyPlayed };
     return NextResponse.json(payload);
-  } catch {
-    return NextResponse.json(SPOTIFY_MOCK);
+  } catch (err) {
+    // Diagnostic: error message only — never credentials.
+    const message = err instanceof Error ? err.message : "unknown error";
+    return NextResponse.json({ ...SPOTIFY_MOCK, reason: "api_error", message });
   }
 }
