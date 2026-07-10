@@ -48,15 +48,27 @@ async function getAccessToken(id: string, secret: string, refresh: string) {
     body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: refresh }),
     cache: "no-store",
   });
-  if (!res.ok) throw new Error(`token exchange failed: ${res.status}`);
+  if (!res.ok) {
+    // Surface Spotify's error code (e.g. invalid_client / invalid_grant) —
+    // it identifies WHICH credential is bad without exposing any value.
+    const body = (await res.json().catch(() => ({}))) as {
+      error?: string;
+      error_description?: string;
+    };
+    throw new Error(
+      `token exchange failed: ${res.status} ${body.error ?? ""} ${body.error_description ?? ""}`.trim()
+    );
+  }
   const json = (await res.json()) as { access_token: string };
   return json.access_token;
 }
 
 export async function GET() {
-  const id = process.env.SPOTIFY_CLIENT_ID;
-  const secret = process.env.SPOTIFY_CLIENT_SECRET;
-  const refresh = process.env.SPOTIFY_REFRESH_TOKEN;
+  // Trim: pasted env values often carry stray spaces/newlines, and unlike
+  // local .env loading, Vercel stores them verbatim.
+  const id = process.env.SPOTIFY_CLIENT_ID?.trim();
+  const secret = process.env.SPOTIFY_CLIENT_SECRET?.trim();
+  const refresh = process.env.SPOTIFY_REFRESH_TOKEN?.trim();
 
   if (!id || !secret || !refresh) {
     // Diagnostic: names of the missing vars only — never values.
