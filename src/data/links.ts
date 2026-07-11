@@ -8,5 +8,5 @@ export const LINKS = {
   letterboxd: "https://letterboxd.com/wa4tchingm0vies/",
   // TODO: add your public Spotify profile URL if you want it linked directly.
   spotify: "https://open.spotify.com",
-  resume: "/Daniel's Resume.pdf",
+  resume: "/Daniel_Oluwatosin_Resume.pdf",
 } as const;
