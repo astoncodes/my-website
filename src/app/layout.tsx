@@ -14,11 +14,7 @@ export const metadata: Metadata = {
   title: "Daniel Oluwatosin — Software Engineer",
   description:
     "Daniel Oluwatosin — Toronto-based software engineer building full-stack products, data platforms, and game systems. Part portfolio, part art archive, part music/film signal feed.",
-  icons: {
-    icon: [{ url: "/ayo.ico", sizes: "any" }, { url: "/ayo.ico", type: "image/x-icon" }],
-    shortcut: "/ayo.ico",
-    apple: "/ayo.ico",
-  },
+  // Favicon comes from the src/app/icon.png + apple-icon.png convention files.
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
