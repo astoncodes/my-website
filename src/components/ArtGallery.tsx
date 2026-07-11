@@ -175,7 +175,6 @@ export default function ArtGallery() {
       </div>
 
       <p className="reveal mono mt-4 text-[0.7rem]" style={{ color: "var(--muted)" }}>
-        {"// Drop reference images into /public/gallery and register them in src/data/galleryItems.ts"}
       </p>
     </section>
   );
