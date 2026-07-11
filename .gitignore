@@ -42,3 +42,6 @@ next-env.d.ts
 
 # keep the env template
 !.env.example
+
+# local design reference, not part of the site
+src/components/design.html
