@@ -4,7 +4,7 @@ import { SPOTIFY_MOCK, type SpotifyPayload, type Track } from "@/data/media";
 /**
  * Spotify integration.
  *
- * TODO — to connect real Spotify data:
+ * One-time setup to connect real Spotify data:
  *  1. Create an app at https://developer.spotify.com/dashboard
  *  2. Get a refresh token with the scopes:
  *       user-read-currently-playing user-read-recently-played

@@ -17,7 +17,8 @@ export type SpotifyPayload = {
   recentlyPlayed: Track[];
 };
 
-// TODO: Replace with live data — see src/app/api/spotify/route.ts for setup.
+// Fallback only — the live integration is wired in src/app/api/spotify/route.ts
+// and serves real data whenever the SPOTIFY_* env vars are present.
 export const SPOTIFY_MOCK: SpotifyPayload = {
   mock: true,
   nowPlaying: {

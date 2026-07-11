@@ -6,7 +6,7 @@ export const LINKS = {
   github: "https://github.com/astoncodes",
   linkedin: "https://linkedin.com/in/ayobami-daniel",
   letterboxd: "https://letterboxd.com/wa4tchingm0vies/",
-  // TODO: add your public Spotify profile URL if you want it linked directly.
+  // Generic app link — swap for a public Spotify profile URL to deep-link.
   spotify: "https://open.spotify.com",
   resume: "/Daniel_Oluwatosin_Resume.pdf",
 } as const;

@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
       "Solo-building in Unity with C#: core gameplay systems including combat, movement, map progression, loot, and bosses, plus a morality system tracking choices across a run.",
     outcome:
       "In active development: four elemental combat paths, a 50-stage progression map, and eight distinct endings driven by the morality system.",
-    // TODO: add the ASHẸ repo or devlog link when public.
+    // Repo stays private while in development — swap in the real link when it goes public.
     links: [{ label: "GitHub Profile", href: "https://github.com/astoncodes" }],
     variant: "mythic",
   },
@@ -53,8 +53,7 @@ export const PROJECTS: Project[] = [
       "React + Tailwind frontend over an Express REST API. Designed a MongoDB schema optimized for fast filtered search across location, price, and property type.",
     outcome:
       "Deployed to production with 50+ live listings and a working end-to-end search flow.",
-    // TODO: add the MapleNest repo / live URL.
-    links: [{ label: "GitHub Profile", href: "https://github.com/astoncodes" }],
+    links: [{ label: "View on GitHub", href: "https://github.com/astoncodes/MapleNest" }],
     variant: "standard",
   },
   {

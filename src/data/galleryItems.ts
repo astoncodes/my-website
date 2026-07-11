@@ -14,9 +14,9 @@ export type GalleryItem = {
   caption: string;
   link?: string;
   moods: string[];
-  /** CSS gradient used while no image exists */
-  gradient: string;
-  /** aspect ratio for the masonry card, e.g. "3/4" */
+  /** CSS gradient placeholder, only used when `image` is absent */
+  gradient?: string;
+  /** aspect ratio of the carousel card, e.g. "3/4" */
   ratio: string;
 };
 
@@ -35,7 +35,6 @@ export type GalleryItem = {
         caption: "Why the site glows purple.",// revealed on hover
         link: "https://...",                  // optional — card becomes a link
         moods: ["EVA", "PURPLE", "BERSERK"],  // hover tags
-        gradient: "",                         // ignored once image is set
         ratio: "3/4",                         // card shape: "3/4" portrait,
       },                                      // "1/1" square, "16/10" wide
 
@@ -52,7 +51,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "End of Evangelion poster art — Shinji and Asuka on the LCL shore under giant Rei",
     caption: "The frame that rewired my taste. Half this site's color palette starts here.",
     moods: ["EVA", "GAINAX", "LCL"],
-    gradient: "",
     ratio: "2/3",
   },
   {
@@ -63,7 +61,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Green cross-shaped explosions over a red sea from End of Evangelion",
     caption: "Green crosses over a red sea — nobody frames an apocalypse like Evangelion.",
     moods: ["EVA", "CROSSES", "RED SKY"],
-    gradient: "",
     ratio: "9/16",
   },
   {
@@ -74,7 +71,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Bleach color spread of Ichigo, Renji, and crew on subway stairs",
     caption: "Kubo's fits go harder than most lookbooks. Manga panels as street style.",
     moods: ["BLEACH", "KUBO", "DRIP"],
-    gradient: "",
     ratio: "1/1",
   },
   {
@@ -85,7 +81,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Gesicht from Pluto by Naoki Urasawa",
     caption: "Urasawa's robot noir. The bar for slow, deliberate storytelling.",
     moods: ["PLUTO", "URASAWA", "NOIR"],
-    gradient: "",
     ratio: "1/1",
   },
   {
@@ -96,7 +91,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "City of God movie poster",
     caption: "Incredible pacing, incredible storytelling. 4.5★ on the diary.",
     moods: ["MEIRELLES", "35MM", "CANNES"],
-    gradient: "",
     ratio: "2/3",
   },
   {
@@ -107,7 +101,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Scott Pilgrim and Ramona Flowers at a party",
     caption: "5★ every rewatch. Toronto canon — Lee's Palace pilgrimage pending.",
     moods: ["SCOTT PILGRIM", "TORONTO", "RAMONA"],
-    gradient: "",
     ratio: "9/16",
   },
   {
@@ -118,7 +111,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Textless Scott Pilgrim poster — Scott playing bass on a red background",
     caption: "Textless poster perfection. One color, one bass, all attitude.",
     moods: ["POSTER", "SEX BOB-OMB", "RED"],
-    gradient: "",
     ratio: "9/16",
   },
   {
@@ -129,7 +121,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Frank Lampard with a cigar and the Champions League trophy in the dressing room",
     caption: "Lampard, a cigar, and old big ears. The greatest night in blue.",
     moods: ["CFC", "UCL", "LAMPARD"],
-    gradient: "",
     ratio: "3/4",
   },
   {
@@ -140,7 +131,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Braids-era Didier Drogba in the 2007/08 Samsung mobile Chelsea kit making a goggles gesture",
     caption: "Samsung Mobile era, braids, gloves. Goggles up.",
     moods: ["CFC", "DROGBA", "07/08"],
-    gradient: "",
     ratio: "9/20",
   },
   {
@@ -151,17 +141,6 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     alt: "Eden Hazard bowling in Chelsea training gear",
     caption: "Chelsea's last true no.10, cooking at the bowling alley.",
     moods: ["CFC", "HAZARD", "ARCHIVE"],
-    gradient: "",
     ratio: "4/5",
-  },
-  // Gradient placeholder until real music art lands here.
-  {
-    id: "mixtape-index",
-    title: "MIXTAPE INDEX VOL. 1",
-    category: "music",
-    caption: "Underground rap & R&B rotation — poster-grade cover art only.",
-    moods: ["RAP", "R&B", "ANALOG"],
-    gradient: "linear-gradient(135deg, #2b1508 0%, #08080b 55%, #3d2510 100%)",
-    ratio: "1/1",
   },
 ];

@@ -8,10 +8,10 @@ import { GALLERY_ITEMS, type GalleryCategory } from "@/data/galleryItems";
 const FILTERS: { label: string; value: GalleryCategory | "all" }[] = [
   { label: "ALL", value: "all" },
   { label: "ANIME", value: "anime" },
-  { label: "MUSIC", value: "music" },
   { label: "FILM", value: "film" },
   { label: "SPORTS", value: "sports" },
   { label: "DESIGN", value: "design" },
+  // Re-add { label: "MUSIC", value: "music" } once music images exist.
 ];
 
 export default function ArtGallery() {
@@ -174,8 +174,6 @@ export default function ArtGallery() {
         </div>
       </div>
 
-      <p className="reveal mono mt-4 text-[0.7rem]" style={{ color: "var(--muted)" }}>
-      </p>
     </section>
   );
 }
