@@ -1,41 +1,61 @@
-import type { Metadata } from "next";
-import { Anton, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Jost, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import CommandPalette from "@/components/CommandPalette";
-import SignalDock from "@/components/SignalDock";
-import SystemStatusFooter from "@/components/SystemStatusFooter";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
-const display = Anton({ weight: "400", subsets: ["latin"], variable: "--font-display" });
-const body = Space_Grotesk({ subsets: ["latin"], variable: "--font-body" });
-const mono = IBM_Plex_Mono({ weight: ["400", "500"], subsets: ["latin"], variable: "--font-mono" });
+const jost = Jost({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-jost",
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin", "latin-ext"],
+  axes: ["opsz"],
+  variable: "--font-source-serif",
+  display: "swap",
+});
+
+const title = "Daniel Oluwatosin — Software Engineer";
+const description =
+  "Daniel Oluwatosin is a software engineer and computer science student at the University of Prince Edward Island, most recently a software engineer intern at Mackenzie Investments.";
 
 export const metadata: Metadata = {
-  title: "Daniel Oluwatosin — Software Engineer",
-  description:
-    "Daniel Oluwatosin — Toronto-based software engineer building full-stack products, data platforms, and game systems. Part portfolio, part art archive, part music/film signal feed.",
-  // Favicon comes from the src/app/icon.png + apple-icon.png convention files.
+  metadataBase: new URL("https://ayotosin.com"),
+  title: { default: title, template: "%s — Daniel Oluwatosin" },
+  description,
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Daniel Oluwatosin",
+    locale: "en_CA",
+    title,
+    description,
+  },
+  twitter: { card: "summary_large_image", title, description },
+  // Icons and the link-preview image come from the icon.png, apple-icon.png,
+  // favicon.ico and opengraph-image.png files in this folder.
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0b0b",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" className={`${jost.variable} ${sourceSerif.variable}`}>
       <body>
         <a
           href="#main"
-          className="mono sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-3 focus:py-2 focus:text-sm"
-          style={{ background: "var(--blue-deep)", color: "var(--beige)" }}
+          className="sr-only font-display text-sm focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:text-canvas"
         >
           Skip to content
         </a>
-
-        <Nav />
-
+        <SiteHeader />
         <main id="main">{children}</main>
-
-        <SystemStatusFooter />
-        <CommandPalette />
-        <SignalDock />
+        <SiteFooter />
       </body>
     </html>
   );

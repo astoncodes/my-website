@@ -1,146 +1,127 @@
-export type GalleryCategory = "anime" | "music" | "film" | "sports" | "design" | "personal";
+import type { StaticImageData } from "next/image";
+import endOfEvangelion from "../../public/gallery/end-of-evangelion.jpg";
+import terminalDogma from "../../public/gallery/terminal-dogma.jpg";
+import bleachSpread from "../../public/gallery/bleach-spread.jpg";
+import plutoGesicht from "../../public/gallery/pluto-gesicht.jpg";
+import cityOfGod from "../../public/gallery/city-of-god.jpg";
+import scottAndRamona from "../../public/gallery/scott-and-ramona.jpg";
+import scottPilgrimPoster from "../../public/gallery/scott-pilgrim-poster.jpg";
+import lampardMunich from "../../public/gallery/lampard-munich.jpg";
+import drogbaGoggles from "../../public/gallery/drogba-goggles.jpg";
+import hazardBowling from "../../public/gallery/hazard-bowling.jpg";
 
 export type GalleryItem = {
   id: string;
+  image: StaticImageData;
+  alt: string;
   title: string;
-  category: GalleryCategory;
-  /**
-   * Optional local image, e.g. "/gallery/eva-terminal.jpg".
-   * Drop files into /public/gallery and set the path here.
-   * When absent, the card renders a typographic/gradient placeholder.
-   */
-  image?: string;
-  alt?: string;
-  caption: string;
-  link?: string;
-  moods: string[];
-  /** CSS gradient placeholder, only used when `image` is absent */
-  gradient?: string;
-  /** aspect ratio of the carousel card, e.g. "3/4" */
-  ratio: string;
+  /** Year or creator, shown after the title. */
+  detail?: string;
+  /** Which hero column the image rotates through. */
+  lane: "anime" | "film" | "football";
+  /** CSS object-position for the narrow hero columns (keeps the subject in frame). */
+  focus?: string;
 };
 
-/* ─────────────────────────────────────────────────────────────
-   HOW TO ADD YOUR OWN IMAGES
-   1. Drop the file into  public/gallery/   (jpg/png/webp all fine)
-      e.g.  public/gallery/eva-unit01.jpg
-   2. Add an entry below (or set `image` + `alt` on an existing one):
-
-      {
-        id: "eva-unit01",                     // unique slug
-        title: "UNIT-01 BERSERK",             // big label on the card
-        category: "anime",                    // anime | music | film | sports | design | personal
-        image: "/gallery/eva-unit01.jpg",     // path relative to /public
-        alt: "Evangelion Unit-01 poster",     // describes the image (accessibility)
-        caption: "Why the site glows purple.",// revealed on hover
-        link: "https://...",                  // optional — card becomes a link
-        moods: ["EVA", "PURPLE", "BERSERK"],  // hover tags
-        ratio: "3/4",                         // card shape: "3/4" portrait,
-      },                                      // "1/1" square, "16/10" wide
-
-   3. That's it — filters, hover captions, and layout pick it up
-      automatically. Once `image` is set the gradient placeholder
-      is replaced by the photo with a dark scrim for readability.
-──────────────────────────────────────────────────────────────── */
+/*
+  To add an image: drop it in public/gallery/, import it above, and add an
+  entry below. Width, height and the blur placeholder come from the import.
+*/
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "end-of-evangelion",
-    title: "THE END OF EVANGELION",
-    category: "anime",
-    image: "/gallery/end-of-evangelion.jpg",
-    alt: "End of Evangelion poster art — Shinji and Asuka on the LCL shore under giant Rei",
-    caption: "The frame that rewired my taste. Half this site's color palette starts here.",
-    moods: ["EVA", "GAINAX", "LCL"],
-    ratio: "2/3",
-  },
-  {
-    id: "terminal-dogma",
-    title: "TERMINAL DOGMA",
-    category: "anime",
-    image: "/gallery/terminal-dogma.jpg",
-    alt: "Green cross-shaped explosions over a red sea from End of Evangelion",
-    caption: "Green crosses over a red sea — nobody frames an apocalypse like Evangelion.",
-    moods: ["EVA", "CROSSES", "RED SKY"],
-    ratio: "9/16",
-  },
-  {
-    id: "bleach-spread",
-    title: "SOUL SOCIETY ARCHIVE",
-    category: "anime",
-    image: "/gallery/bleach-spread.jpg",
-    alt: "Bleach color spread of Ichigo, Renji, and crew on subway stairs",
-    caption: "Kubo's fits go harder than most lookbooks. Manga panels as street style.",
-    moods: ["BLEACH", "KUBO", "DRIP"],
-    ratio: "1/1",
-  },
-  {
-    id: "pluto-gesicht",
-    title: "PLUTO — GESICHT",
-    category: "anime",
-    image: "/gallery/pluto-gesicht.jpg",
-    alt: "Gesicht from Pluto by Naoki Urasawa",
-    caption: "Urasawa's robot noir. The bar for slow, deliberate storytelling.",
-    moods: ["PLUTO", "URASAWA", "NOIR"],
-    ratio: "1/1",
+    image: endOfEvangelion,
+    lane: "anime",
+    alt: "End of Evangelion poster art: Shinji and Asuka on the shore under a giant Rei",
+    title: "The End of Evangelion",
+    detail: "1997",
+    focus: "50% 70%",
   },
   {
     id: "city-of-god",
-    title: "CITY OF GOD (2002)",
-    category: "film",
-    image: "/gallery/city-of-god.jpg",
+    image: cityOfGod,
+    lane: "film",
     alt: "City of God movie poster",
-    caption: "Incredible pacing, incredible storytelling. 4.5★ on the diary.",
-    moods: ["MEIRELLES", "35MM", "CANNES"],
-    ratio: "2/3",
-  },
-  {
-    id: "scott-and-ramona",
-    title: "SCOTT & RAMONA",
-    category: "film",
-    image: "/gallery/scott-and-ramona.jpg",
-    alt: "Scott Pilgrim and Ramona Flowers at a party",
-    caption: "5★ every rewatch. Toronto canon — Lee's Palace pilgrimage pending.",
-    moods: ["SCOTT PILGRIM", "TORONTO", "RAMONA"],
-    ratio: "9/16",
-  },
-  {
-    id: "scott-pilgrim-poster",
-    title: "VS. THE WORLD",
-    category: "design",
-    image: "/gallery/scott-pilgrim-poster.jpg",
-    alt: "Textless Scott Pilgrim poster — Scott playing bass on a red background",
-    caption: "Textless poster perfection. One color, one bass, all attitude.",
-    moods: ["POSTER", "SEX BOB-OMB", "RED"],
-    ratio: "9/16",
-  },
-  {
-    id: "lampard-munich",
-    title: "MUNICH 2012",
-    category: "sports",
-    image: "/gallery/lampard-munich.jpg",
-    alt: "Frank Lampard with a cigar and the Champions League trophy in the dressing room",
-    caption: "Lampard, a cigar, and old big ears. The greatest night in blue.",
-    moods: ["CFC", "UCL", "LAMPARD"],
-    ratio: "3/4",
+    title: "City of God",
+    detail: "2002",
+    focus: "50% 45%",
   },
   {
     id: "drogba-goggles",
-    title: "DROGBA AT THE BRIDGE",
-    category: "sports",
-    image: "/gallery/drogba-goggles.jpg",
-    alt: "Braids-era Didier Drogba in the 2007/08 Samsung mobile Chelsea kit making a goggles gesture",
-    caption: "Samsung Mobile era, braids, gloves. Goggles up.",
-    moods: ["CFC", "DROGBA", "07/08"],
-    ratio: "9/20",
+    image: drogbaGoggles,
+    lane: "football",
+    alt: "Didier Drogba in the 2007/08 Chelsea kit making a goggles gesture",
+    title: "Didier Drogba",
+    detail: "2007–08",
+    focus: "50% 22%",
+  },
+  {
+    id: "terminal-dogma",
+    image: terminalDogma,
+    lane: "anime",
+    focus: "85% 30%",
+    alt: "Green cross-shaped explosions over a red sea, from The End of Evangelion",
+    title: "The End of Evangelion",
+    detail: "1997",
+  },
+  {
+    id: "bleach-spread",
+    image: bleachSpread,
+    lane: "anime",
+    focus: "89% 50%",
+    alt: "Bleach colour spread of Ichigo, Renji and others on subway stairs",
+    title: "Bleach",
+    detail: "Tite Kubo",
+  },
+  {
+    id: "pluto-gesicht",
+    image: plutoGesicht,
+    lane: "anime",
+    focus: "50% 50%",
+    alt: "Gesicht from Pluto by Naoki Urasawa",
+    title: "Pluto",
+    detail: "Naoki Urasawa",
+  },
+  {
+    id: "scott-and-ramona",
+    image: scottAndRamona,
+    lane: "film",
+    focus: "85% 55%",
+    alt: "Scott Pilgrim and Ramona Flowers at a party",
+    title: "Scott Pilgrim vs. the World",
+    detail: "2010",
+  },
+  {
+    id: "scott-pilgrim-poster",
+    image: scottPilgrimPoster,
+    lane: "film",
+    focus: "70% 45%",
+    alt: "Textless Scott Pilgrim poster: Scott playing bass on a red background",
+    title: "Scott Pilgrim vs. the World",
+    detail: "Poster",
+  },
+  {
+    id: "lampard-munich",
+    image: lampardMunich,
+    lane: "football",
+    focus: "28% 40%",
+    alt: "Frank Lampard with a cigar and the Champions League trophy in the dressing room",
+    title: "Frank Lampard, Munich",
+    detail: "2012",
   },
   {
     id: "hazard-bowling",
-    title: "HAZARD, OFF DUTY",
-    category: "sports",
-    image: "/gallery/hazard-bowling.jpg",
+    image: hazardBowling,
+    lane: "football",
+    focus: "50% 50%",
     alt: "Eden Hazard bowling in Chelsea training gear",
-    caption: "Chelsea's last true no.10, cooking at the bowling alley.",
-    moods: ["CFC", "HAZARD", "ARCHIVE"],
-    ratio: "4/5",
+    title: "Eden Hazard",
   },
 ];
+
+// Hero columns, left to right. Each starts on its first image and rotates
+// through the rest; the gallery section shows everything that isn't a starting image.
+export const HERO_LANES = (["anime", "film", "football"] as const).map((lane) =>
+  GALLERY_ITEMS.filter((i) => i.lane === lane)
+);
+export const WALL_ITEMS = GALLERY_ITEMS.filter((i) => !HERO_LANES.some((lane) => lane[0] === i));

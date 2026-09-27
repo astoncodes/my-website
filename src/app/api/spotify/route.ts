@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { SPOTIFY_MOCK, type SpotifyPayload, type Track } from "@/data/media";
+import { SPOTIFY_UNAVAILABLE, type SpotifyPayload, type Track } from "@/data/media";
 
 /**
  * Spotify integration.
@@ -14,8 +14,8 @@ import { SPOTIFY_MOCK, type SpotifyPayload, type Track } from "@/data/media";
  *       SPOTIFY_CLIENT_SECRET
  *       SPOTIFY_REFRESH_TOKEN
  *
- * Until those are set, this route returns curated mock data so the UI
- * still renders a believable player.
+ * Until those are set (or if Spotify errors), this route returns an empty
+ * payload with `mock: true` and the site hides the listening column.
  */
 
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
@@ -25,15 +25,23 @@ const RECENTLY_PLAYED_URL = "https://api.spotify.com/v1/me/player/recently-playe
 type SpotifyTrackItem = {
   name: string;
   artists: { name: string }[];
-  album: { name: string; images: { url: string }[] };
+  album: { name: string; images: { url: string; width?: number }[] };
+  external_urls?: { spotify?: string };
 };
+
+/** Smallest album image that stays sharp at thumbnail size on 2x screens. */
+function pickArt(images: { url: string; width?: number }[]) {
+  const bySize = [...images].sort((a, b) => (a.width ?? 0) - (b.width ?? 0));
+  return (bySize.find((i) => (i.width ?? 0) >= 96) ?? bySize.at(-1))?.url;
+}
 
 function toTrack(item: SpotifyTrackItem, isPlaying?: boolean): Track {
   return {
     title: item.name,
     artist: item.artists.map((a) => a.name).join(", "),
     album: item.album.name,
-    albumArt: item.album.images.at(-1)?.url ?? item.album.images[0]?.url,
+    albumArt: pickArt(item.album.images),
+    url: item.external_urls?.spotify,
     isPlaying,
   };
 }
@@ -77,7 +85,7 @@ export async function GET() {
       !secret && "SPOTIFY_CLIENT_SECRET",
       !refresh && "SPOTIFY_REFRESH_TOKEN",
     ].filter(Boolean);
-    return NextResponse.json({ ...SPOTIFY_MOCK, reason: "missing_env", missing });
+    return NextResponse.json({ ...SPOTIFY_UNAVAILABLE, reason: "missing_env", missing });
   }
 
   try {
@@ -108,6 +116,6 @@ export async function GET() {
   } catch (err) {
     // Diagnostic: error message only — never credentials.
     const message = err instanceof Error ? err.message : "unknown error";
-    return NextResponse.json({ ...SPOTIFY_MOCK, reason: "api_error", message });
+    return NextResponse.json({ ...SPOTIFY_UNAVAILABLE, reason: "api_error", message });
   }
 }

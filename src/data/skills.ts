@@ -1,45 +1,42 @@
-export type SkillGroup = {
-  label: string;
-  code: string; // loadout slot code
-  tone: "blue" | "purple" | "toxic" | "alert";
-  skills: string[];
-};
-
-export const SKILL_GROUPS: SkillGroup[] = [
+// Mirrors the resume's Technical Skills section.
+export const SKILL_GROUPS: { label: string; skills: string[] }[] = [
   {
     label: "Languages",
-    code: "SLOT 01",
-    tone: "blue",
-    skills: ["Java", "TypeScript", "JavaScript", "Python", "C++", "C#", "SQL"],
+    skills: ["Java", "Python", "C++", "C#", "JavaScript", "TypeScript", "SQL", "HTML/CSS"],
   },
   {
-    label: "Frontend",
-    code: "SLOT 02",
-    tone: "purple",
-    skills: ["React", "Next.js", "Redux Toolkit", "RTK Query", "Tailwind", "MUI", "Highcharts", "Vite"],
+    label: "Frameworks & libraries",
+    skills: [
+      "React", "Next.js", "Node.js", "Express", "Flask", "Redux Toolkit",
+      "Spring Boot", "SQLAlchemy", "Marshmallow",
+    ],
   },
   {
-    label: "Backend",
-    code: "SLOT 03",
-    tone: "toxic",
-    skills: ["Node.js", "Express", "Flask", "SQLAlchemy", "Spring Boot", "REST APIs", "Marshmallow"],
+    label: "Databases & cloud",
+    skills: [
+      "Google BigQuery", "PostgreSQL", "MongoDB", "Redis", "Supabase", "AWS",
+      "Google Cloud Platform",
+    ],
   },
   {
-    label: "Data / Cloud",
-    code: "SLOT 04",
-    tone: "blue",
-    skills: ["BigQuery", "PostgreSQL", "MongoDB", "Redis", "GCP", "AWS"],
-  },
-  {
-    label: "DevOps / Security",
-    code: "SLOT 05",
-    tone: "alert",
-    skills: ["Docker", "GitHub Actions", "OAuth2 / OIDC", "Entra ID", "HashiCorp Vault", "JFrog Artifactory"],
-  },
-  {
-    label: "Testing / Tooling",
-    code: "SLOT 06",
-    tone: "purple",
-    skills: ["pytest", "JUnit", "SonarQube", "Xray Scanning", "Git", "Unity"],
+    label: "Tools & infrastructure",
+    skills: [
+      "Git", "GitHub Actions", "Docker", "Linux", "JFrog Artifactory", "HashiCorp Vault",
+      "Microsoft Entra ID", "OAuth 2.0/OIDC", "Postman", "JUnit", "Unity", "Drupal",
+    ],
   },
 ];
+
+export const EDUCATION = {
+  school: "University of Prince Edward Island",
+  degree: "B.Sc. Computer Science, Minor in Economics",
+  dates: "Expected May 2027",
+  coursework: [
+    "Data Structures and Algorithms",
+    "Software Engineering",
+    "Operating Systems",
+    "System Design",
+    "Machine Learning",
+  ],
+  certifications: ["Google Cloud Fundamentals"],
+};
