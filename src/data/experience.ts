@@ -1,63 +1,48 @@
+// Mirrors the resume (Aug 2026 version). Keep bullets short; the PDF has the detail.
 export type Experience = {
   id: string;
   role: string;
   company: string;
-  location: string;
   dates: string;
-  signal: string; // case-file label, e.g. DATA PLATFORM
-  signalTone: "blue" | "purple" | "toxic" | "alert";
-  stack: string[];
   bullets: string[];
+  /** Shown under the bullets, like the project stack lines. */
+  stack?: string[];
 };
 
 export const EXPERIENCE: Experience[] = [
   {
     id: "mackenzie",
     role: "Software Engineer Intern",
-    company: "Mackenzie Investments (IGM Financial) — Product Department",
-    location: "Toronto, ON",
-    dates: "May 2026 — Aug 2026",
-    signal: "DATA PLATFORM",
-    signalTone: "blue",
-    stack: [
-      "Flask 3", "React 18", "TypeScript", "Vite", "BigQuery",
-      "SQLAlchemy 2", "Redux Toolkit", "RTK Query", "Entra ID", "Vault",
-    ],
+    company: "Mackenzie Investments (IGM Financial)",
+    dates: "May – Aug 2026",
     bullets: [
-      "Built a full-stack fund-analytics platform (Flask 3, React 18, TypeScript, Vite) over a 23-table Google BigQuery warehouse, designed as a reusable foundation for future investment-product tools such as Brinson performance attribution.",
-      "Shipped a Product Health dashboard surfacing fund performance, hit rates, and peer-ranking trends for 91 live funds, with Redux Toolkit and RTK Query as the single source of truth and URL-synced filters for shareable, cached views.",
-      "Designed the BigQuery data layer with SQLAlchemy 2 and Marshmallow, exposing REST endpoints behind a single typed {data, asOfDate} contract and serving all 91 funds end to end from production.",
-      "Hardened security by sourcing the BigQuery service-account key from HashiCorp Vault (AppRole, KV v2) and adding Microsoft Entra ID (OIDC/MSAL) SSO with group-based access control behind a fail-closed auth layer — 89 passing tests.",
-      "Defined the CI/CD pipeline publishing two lockstep-versioned artifacts (npm bundle and Python wheel) to JFrog Artifactory through GitHub Actions with OIDC and Xray security scanning.",
+      "Built an analytics hub for the Product Department, giving investment teams one place to explore fund data instead of scattered reports",
+      "Built two modules: Fund Health (performance and hit rates) and Brinson Attribution (allocation and selection effects)",
+      "Data layer with SQLAlchemy and Marshmallow on a 23-table BigQuery warehouse, serving live data for 91 funds",
+      "Vault-managed credentials and Entra ID single sign-on with role-based access, backed by 89 automated tests",
+      "Automated artifact publishing and security scanning with GitHub Actions and JFrog Artifactory, and worked with the infrastructure team on the GCP deployment",
+    ],
+    stack: [
+      "Flask", "React", "TypeScript", "Vite", "Redux Toolkit", "RTK Query", "Google BigQuery",
+      "SQLAlchemy", "Marshmallow", "HashiCorp Vault", "Microsoft Entra ID", "GitHub Actions",
+      "JFrog Artifactory", "GCP",
     ],
   },
   {
     id: "upei-ta",
     role: "Teaching Assistant",
     company: "University of Prince Edward Island",
-    location: "Charlottetown, PE",
-    dates: "Sept 2025 — Present",
-    signal: "TEACHING",
-    signalTone: "toxic",
-    stack: ["Java", "Python", "C++", "Data Structures", "Algorithms"],
-    bullets: [
-      "Guide students through data structures, algorithms, and core programming in Java, Python, and C++.",
-      "Support debugging and algorithmic problem-solving in labs and office hours, helping students strengthen their approach.",
-      "Evaluate assignments with structured feedback and work with faculty to close common learning gaps.",
-    ],
+    dates: "Sep 2025 – Apr 2026",
+    bullets: ["Mentored 40+ students in Java, Python and C++ labs"],
   },
   {
     id: "bceln",
     role: "Software Engineer Intern",
     company: "British Columbia Electronic Library Network",
-    location: "British Columbia",
-    dates: "Jan 2025 — Apr 2025",
-    signal: "API",
-    signalTone: "purple",
-    stack: ["Drupal", "PHP", "REST APIs", "Unit Testing", "Agile"],
+    dates: "Jan – Apr 2025",
     bullets: [
-      "Integrated the external TK Labels REST API into production Drupal applications, mapping metadata schemas and improving interoperability across digital-library systems.",
-      "Investigated production issues and shipped fixes across data-driven applications in an Agile team, adding unit tests and iterative improvements to a Drupal platform.",
+      "Integrated external REST APIs to pull Traditional Knowledge (TK) Labels into Islandora-based repositories",
+      "Debugged and fixed production issues in a Drupal application",
     ],
   },
 ];

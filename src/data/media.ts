@@ -1,13 +1,14 @@
 /**
- * Mock media data — used as graceful fallback when the Spotify /
- * Letterboxd APIs are unreachable or credentials are missing.
+ * Media payload types, plus fallbacks for when the Spotify / Letterboxd
+ * APIs are unreachable or credentials are missing.
  */
 
 export type Track = {
   title: string;
   artist: string;
   album?: string;
-  albumArt?: string; // external URL or /public path
+  albumArt?: string; // external URL
+  url?: string; // open.spotify.com track link
   isPlaying?: boolean;
 };
 
@@ -17,22 +18,12 @@ export type SpotifyPayload = {
   recentlyPlayed: Track[];
 };
 
-// Fallback only — the live integration is wired in src/app/api/spotify/route.ts
-// and serves real data whenever the SPOTIFY_* env vars are present.
-export const SPOTIFY_MOCK: SpotifyPayload = {
+// Returned when Spotify can't be reached. Deliberately empty: the site hides
+// the listening column rather than showing tracks that weren't really played.
+export const SPOTIFY_UNAVAILABLE: SpotifyPayload = {
   mock: true,
-  nowPlaying: {
-    title: "Nights",
-    artist: "Frank Ocean",
-    album: "Blonde",
-    isPlaying: true,
-  },
-  recentlyPlayed: [
-    { title: "Tyrone's Theme", artist: "Desmond Murray", album: "They Cloned Tyrone (OST)" },
-    { title: "Rock With You", artist: "Michael Jackson", album: "Off the Wall" },
-    { title: "Shirt", artist: "SZA", album: "SOS" },
-    { title: "Money Trees", artist: "Kendrick Lamar", album: "good kid, m.A.A.d city" },
-  ],
+  nowPlaying: null,
+  recentlyPlayed: [],
 };
 
 export type Film = {

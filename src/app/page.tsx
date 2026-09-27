@@ -1,72 +1,49 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import AboutCaseFile from "@/components/AboutCaseFile";
-import ExperienceLog from "@/components/ExperienceLog";
-import ProjectArchive from "@/components/ProjectArchive";
-import SkillsLoadout from "@/components/SkillsLoadout";
-import ArtGallery from "@/components/ArtGallery";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
-import RecentlyWatched from "@/components/RecentlyWatched";
-import ContactSection from "@/components/ContactSection";
-import SectionDivider from "@/components/SectionDivider";
-import RevealManager from "@/components/RevealManager";
+import Intro from "@/components/Intro";
+import Section from "@/components/Section";
+import Now from "@/components/Now";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Education from "@/components/Education";
+import MusicAndFilm from "@/components/MusicAndFilm";
+import Gallery from "@/components/Gallery";
+import Contact from "@/components/Contact";
 
-const TICKER = [
-  "NERV-STYLE SIGNAL FEED",
-  "SOUL SOCIETY ARCHIVE",
-  "DIAGNOSTIC BOARD",
-  "MIXTAPE INDEX",
-  "CINEMA LOG",
-  "MATCHDAY SIGNAL",
-  "WARRIORS RUN",
-  "FULL-STACK ENGINEERING",
-  "DATA-HEAVY PRODUCTS",
-  "CINEMATIC INTERFACES",
-];
-
-function TickerStrip() {
-  return (
-    <div
-      className="overflow-hidden border-b py-3"
-      style={{ borderColor: "var(--line)", background: "var(--bg-2)" }}
-      aria-hidden="true"
-    >
-      <div className="marquee-track">
-        {[...TICKER, ...TICKER].map((t, i) => (
-          <span
-            key={i}
-            className="mono mr-10 whitespace-nowrap text-[0.65rem] tracking-[0.18em]"
-            style={{ color: i % 3 === 0 ? "var(--blue)" : "var(--muted)" }}
-          >
-            {t} <span style={{ color: "var(--alert)" }}>{"//"}</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <>
-      <RevealManager />
       <Hero />
-      <TickerStrip />
-      <AboutCaseFile />
-      <ExperienceLog />
-      <ProjectArchive />
-      <SkillsLoadout />
-      <ArtGallery />
-
-      {/* Live media feed — Spotify + Letterboxd */}
-      <section id="signal" className="mx-auto max-w-6xl px-5 py-20 sm:py-28">
-        <SectionDivider index="SEC. 06 — SIGNAL FEED" title="Music &" solid="Film" />
-        <div className="grid gap-6 lg:grid-cols-2">
-          <SpotifyNowPlaying />
-          <RecentlyWatched />
-        </div>
-      </section>
-
-      <ContactSection />
+      <Intro />
+      <Section id="now" label="Now">
+        <Now />
+      </Section>
+      <Section id="experience" label="Experience">
+        <Experience />
+      </Section>
+      <Section id="projects" label="Projects">
+        <Projects />
+      </Section>
+      <Section id="skills" label="Skills">
+        <Skills />
+      </Section>
+      <Section id="education" label="Education">
+        <Education />
+      </Section>
+      <Section id="music-and-film" label="Music & film">
+        <MusicAndFilm />
+      </Section>
+      <Section id="gallery" label="Gallery">
+        <Gallery />
+      </Section>
+      <Section id="contact" label="Contact">
+        <Contact />
+      </Section>
     </>
   );
 }

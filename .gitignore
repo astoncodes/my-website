@@ -45,3 +45,6 @@ next-env.d.ts
 
 # local design reference, not part of the site
 src/components/design.html
+
+# brainstorming companion mockups
+.superpowers/
