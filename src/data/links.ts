@@ -5,7 +5,7 @@ export const LINKS = {
   phone: "+1 902-978-1936",
   phoneHref: "tel:+19029781936",
   github: "https://github.com/astoncodes",
-  linkedin: "https://linkedin.com/in/ayobami-daniel",
+  linkedin: "https://www.linkedin.com/in/daniel-oluwatosin-495755281/",
   letterboxd: "https://letterboxd.com/wa4tchingm0vies/",
   resume: "/Daniel_Oluwatosin_Resume.pdf",
 } as const;

@@ -24,7 +24,7 @@ export default function Contact() {
           <a href={LINKS.phoneHref} className="link">{LINKS.phone}</a>
         </Row>
         <Row label="LinkedIn">
-          <ExternalLink href={LINKS.linkedin} className="link">ayobami-daniel</ExternalLink>
+          <ExternalLink href={LINKS.linkedin} className="link">Daniel Oluwatosin</ExternalLink>
         </Row>
         <Row label="GitHub">
           <ExternalLink href={LINKS.github} className="link">astoncodes</ExternalLink>
